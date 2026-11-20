@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------
+   Health Express Ambulette – global theme
+   Fonts are loaded in layout.jsx via next/font (Marcellus + Poppins)
+------------------------------------------------------------------- */
+:root {
+  --ink: #0a2540;
+  --teal: #0e8a94;
+  --teal-bright: #14b8c4;
+  --mint: #eaf6f6;
+  --accent: #e5484d;
+  --header-h: 76px;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+  body {
+    font-family: var(--font-body), system-ui, sans-serif;
+    color: var(--ink);
+    background: #fff;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-head), var(--font-body), system-ui, sans-serif;
+    letter-spacing: -0.015em;
+  }
+  ::selection { background: var(--teal-bright); color: #fff; }
+  :focus-visible { outline: 3px solid var(--teal-bright); outline-offset: 3px; border-radius: 6px; }
+
+  /* Form controls across every page */
+  input, select, textarea { transition: border-color .2s, box-shadow .2s, background .2s; }
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--teal) !important;
+    box-shadow: 0 0 0 4px rgba(20, 184, 196, 0.18);
+  }
+}
+
+/* Slim scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #eef4f5; }
+::-webkit-scrollbar-thumb { background: linear-gradient(#14b8c4, #0e8a94); border-radius: 10px; border: 2px solid #eef4f5; }
+
+@layer components {
+  /* ---------- Background patterns (pure CSS, no images) ---------- */
+  .pattern-dots {
+    background-image: radial-gradient(rgba(14,138,148,.18) 1.4px, transparent 1.4px);
+    background-size: 22px 22px;
+  }
+  .pattern-grid {
+    background-image:
+      linear-gradient(rgba(10,37,64,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(10,37,64,.05) 1px, transparent 1px);
+    background-size: 36px 36px;
+  }
+  .pattern-cross {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cpath d='M26 18h4v8h8v4h-8v8h-4v-8h-8v-4h8z' fill='%230E8A94' fill-opacity='.09'/%3E%3C/svg%3E");
+  }
+  .pattern-cross-light {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cpath d='M26 18h4v8h8v4h-8v8h-4v-8h-8v-4h8z' fill='%23ffffff' fill-opacity='.07'/%3E%3C/svg%3E");
+  }
+  .pattern-waves {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='24' viewBox='0 0 120 24'%3E%3Cpath d='M0 12c15 0 15-8 30-8s15 8 30 8 15-8 30-8 15 8 30 8' fill='none' stroke='%230E8A94' stroke-opacity='.12' stroke-width='2'/%3E%3C/svg%3E");
+  }
+  .bg-hero-night {
+    background:
+      radial-gradient(1200px 500px at 85% -10%, rgba(20,184,196,.35), transparent 60%),
+      linear-gradient(135deg, #061a2f 0%, #0a2540 55%, #0b4a58 100%);
+  }
+  .bg-soft-mint {
+    background: linear-gradient(180deg, #f4fbfb 0%, #eaf6f6 100%);
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .55rem;
+    padding: .85rem 1.6rem; border-radius: 999px; font-weight: 700; font-size: .95rem;
+    letter-spacing: .01em; transition: transform .2s, box-shadow .25s, background .25s, color .25s;
+    position: relative; overflow: hidden; white-space: nowrap;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn:active { transform: translateY(0) scale(.98); }
+  .btn-primary { background: var(--teal); color: #fff; box-shadow: 0 10px 24px -10px rgba(14,138,148,.75); }
+  .btn-primary:hover { background: #0b6e77; box-shadow: 0 16px 30px -10px rgba(14,138,148,.85); }
+  .btn-accent { background: var(--accent); color: #fff; box-shadow: 0 10px 24px -10px rgba(229,72,77,.75); }
+  .btn-accent:hover { background: #c8343a; }
+  .btn-ghost { background: rgba(255,255,255,.12); color: #fff; border: 1.5px solid rgba(255,255,255,.55); backdrop-filter: blur(6px); }
+  .btn-ghost:hover { background: #fff; color: var(--ink); }
+  .btn-shine::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.45) 50%, transparent 70%);
+    transform: translateX(-120%); transition: transform .8s;
+  }
+  .btn-shine:hover::after { transform: translateX(120%); }
+
+  /* ---------- Section helpers ---------- */
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: .5rem; font-weight: 700; font-size: .8rem;
+    text-transform: uppercase; letter-spacing: .18em; color: var(--teal);
+  }
+  .eyebrow::before { content: ""; width: 28px; height: 2px; background: currentColor; border-radius: 2px; }
+  .card-lift { transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s; }
+  .card-lift:hover { transform: translateY(-6px); box-shadow: 0 28px 50px -24px rgba(10,37,64,.4); }
+  .text-gradient {
+    background: linear-gradient(90deg, #14b8c4, #5eead4 60%, #fff);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .skeleton {
+    background: linear-gradient(90deg, #e7f1f2 25%, #f4fafa 50%, #e7f1f2 75%);
+    background-size: 200% 100%; animation: shimmer 2.4s linear infinite;
+  }
+
+  /* ---------- Hero slider text animation ---------- */
+  .hero-line { display: block; overflow: hidden; }
+  .hero-line > span { display: block; transform: translateY(110%); animation: heroLine .9s cubic-bezier(.2,.8,.2,1) forwards; }
+  @keyframes heroLine { to { transform: translateY(0); } }
+  .fade-rise { opacity: 0; transform: translateY(24px); animation: riseIn .8s cubic-bezier(.2,.8,.2,1) forwards; }
+  @keyframes riseIn { to { opacity: 1; transform: none; } }
+  .progress-bar { transform-origin: left; animation: barFill linear forwards; }
+  @keyframes barFill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+  /* Heartbeat line drawing */
+  .ecg { stroke-dasharray: 400; stroke-dashoffset: 400; animation: ecg 2.6s linear infinite; }
+  @keyframes ecg { to { stroke-dashoffset: 0; } }
+}
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  .hero-line > span, .fade-rise { transform: none; opacity: 1; }
+}
