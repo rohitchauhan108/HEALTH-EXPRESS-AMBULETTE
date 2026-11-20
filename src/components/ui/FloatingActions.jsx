@@ -17,7 +17,6 @@ export default function FloatingActions() {
       icon: <FaWhatsapp />,
       bg: "bg-[#25D366]",
       target: true,
-      ping: true,
     },
     {
       label: "Call",
@@ -25,7 +24,6 @@ export default function FloatingActions() {
       icon: <FaPhoneAlt />,
       bg: "bg-[#2563EB]",
       target: false,
-      ping: true,
     },
     {
       label: "Email",
@@ -48,7 +46,7 @@ export default function FloatingActions() {
   return (
     <>
       {/* Desktop: floating stack on right */}
-      <div className="hidden md:flex fixed right-5 top-1/2 -translate-y-1/2 z-[60] flex-col items-end gap-3">
+      <div className="hidden md:flex fixed right-5 top-[55%] -translate-y-1/2 z-[60] flex-col items-end gap-3">
         {items.map((it) => (
           <a
             key={it.label}
@@ -68,7 +66,7 @@ export default function FloatingActions() {
       </div>
 
       {/* Mobile: floating stack on right */}
-      <div className="md:hidden fixed right-3 top-1/2 -translate-y-1/2 z-[60] flex flex-col items-end gap-2.5">
+      <div className="md:hidden fixed right-3 top-[55%] -translate-y-1/2 z-[60] flex flex-col items-end gap-2.5">
         {items.map((it) => (
           <a
             key={it.label}

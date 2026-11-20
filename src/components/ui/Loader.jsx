@@ -1,17 +1,20 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 /** Full-screen logo loader – logo in the middle, ambulance drives across the bottom. */
 export default function Loader() {
+  const pathname = usePathname();
   const [phase, setPhase] = useState("show"); // show -> hide -> gone
 
   useEffect(() => {
     const MIN = 3600; // let the ambulance finish crossing before fading
     const FADE = 500; // must match the transition duration below
+    setPhase("show");
     const hide = setTimeout(() => setPhase("hide"), MIN);
     const gone = setTimeout(() => setPhase("gone"), MIN + FADE);
     return () => { clearTimeout(hide); clearTimeout(gone); };
-  }, []);
+  }, [pathname]);
 
   if (phase === "gone") return null;
   return (
